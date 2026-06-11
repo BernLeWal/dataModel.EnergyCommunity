@@ -1,0 +1,55 @@
+{
+  "id": "urn:ngsi-ld:EnergyCommunityMember:member-001",
+  "type": "EnergyCommunityMember",
+  "memberName": {
+    "type": "Property",
+    "value": "Maria Huber"
+  },
+  "memberRole": {
+    "type": "Property",
+    "value": "prosumer"
+  },
+  "membershipStatus": {
+    "type": "Property",
+    "value": "active"
+  },
+  "joinDate": {
+    "type": "Property",
+    "value": "2023-03-15T00:00:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "Innstraße 42",
+      "addressLocality": "Innsbruck",
+      "addressRegion": "Tyrol",
+      "postalCode": "6020",
+      "addressCountry": "AT"
+    }
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        11.3928,
+        47.2620
+      ]
+    }
+  },
+  "refCommunity": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:EnergyCommunity:osih-energy-community-001"
+  },
+  "hasDevices": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Device:smart-meter-001",
+      "urn:ngsi-ld:Device:solar-inverter-001"
+    ]
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.EnergyCommunity/main/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

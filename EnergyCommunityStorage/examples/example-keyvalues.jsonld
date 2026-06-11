@@ -1,0 +1,17 @@
+{
+  "id": "urn:ngsi-ld:EnergyCommunityStorage:storage-001",
+  "type": "EnergyCommunityStorage",
+  "batteryLevel": 72,
+  "stateOfCharge": 7.2,
+  "activePowerIn": 0,
+  "activePowerOut": 1500,
+  "batteryCapacity": 10.0,
+  "operatingStatus": "discharging",
+  "dateObserved": "2024-01-15T10:30:00Z",
+  "refDevice": "urn:ngsi-ld:Device:battery-001",
+  "refMember": "urn:ngsi-ld:EnergyCommunityMember:member-001",
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+    "https://smartdatamodels.org/context.jsonld"
+  ]
+}

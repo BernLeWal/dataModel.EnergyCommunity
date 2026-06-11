@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smart-data-models.github.io/dataModel.EnergyCommunity/EnergyCommunityProduction/schema.json",
+  "title": "EnergyCommunityProduction",
+  "description": "Energy production entity for an Energy Community, extending the SolarEnergy Smart Data Model. Captures real-time and cumulative energy generation from solar panels or wind turbines via microinverters.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://smart-data-models.github.io/dataModel.Energy/SolarEnergy/schema.json"
+    },
+    {
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri",
+          "description": "Unique NGSI-LD entity identifier in URN format (urn:ngsi-ld:EnergyCommunityProduction:<instance-id>)"
+        },
+        "type": {
+          "type": "string",
+          "const": "EnergyCommunityProduction",
+          "description": "NGSI-LD entity type"
+        },
+        "activePower": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Current power output in Watts"
+        },
+        "activeEnergyGenerated": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Cumulative energy produced in kWh"
+        },
+        "sourceType": {
+          "type": "string",
+          "enum": [
+            "solar",
+            "wind"
+          ],
+          "description": "Energy source type"
+        },
+        "panelEfficiency": {
+          "type": "number",
+          "description": "Current panel efficiency in %"
+        },
+        "irradiance": {
+          "type": "number",
+          "description": "Solar irradiance on panel surface in W/m²"
+        },
+        "dateObserved": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Observation timestamp in ISO 8601 format"
+        },
+        "address": {
+          "type": "object",
+          "description": "Postal address of the production installation",
+          "properties": {
+            "streetAddress": {
+              "type": "string",
+              "description": "Street address"
+            },
+            "addressLocality": {
+              "type": "string",
+              "description": "City or locality"
+            },
+            "addressRegion": {
+              "type": "string",
+              "description": "Region or state"
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Postal code"
+            },
+            "addressCountry": {
+              "type": "string",
+              "description": "Country code (ISO 3166-1 alpha-2)"
+            }
+          }
+        },
+        "location": {
+          "type": "object",
+          "description": "GeoJSON Point representing the geographic location of the production installation",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "Point"
+            },
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "maxItems": 3,
+              "description": "Array of [longitude, latitude] or [longitude, latitude, altitude]"
+            }
+          },
+          "required": [
+            "type",
+            "coordinates"
+          ]
+        },
+        "refDevice": {
+          "type": "string",
+          "format": "uri",
+          "description": "URN reference to the microinverter device (urn:ngsi-ld:Device:<id>)"
+        },
+        "refMember": {
+          "type": "string",
+          "format": "uri",
+          "description": "URN reference to the EnergyCommunityMember entity that owns this production installation"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "activePower",
+        "dateObserved",
+        "refMember"
+      ]
+    }
+  ]
+}

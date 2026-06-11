@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smart-data-models.github.io/dataModel.EnergyCommunity/EnergyCommunityMember/schema.json",
+  "title": "EnergyCommunityMember",
+  "description": "Schema for an Energy Community Member entity representing a participant in an energy community with their role and associated devices.",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "memberName",
+    "memberRole",
+    "refCommunity"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uri",
+      "description": "Unique identifier of the entity in URN format (urn:ngsi-ld:EnergyCommunityMember:<instance-id>)"
+    },
+    "type": {
+      "type": "string",
+      "const": "EnergyCommunityMember",
+      "description": "NGSI-LD entity type, must be EnergyCommunityMember"
+    },
+    "memberName": {
+      "type": "string",
+      "description": "Name of the community member"
+    },
+    "memberRole": {
+      "type": "string",
+      "enum": [
+        "producer",
+        "consumer",
+        "prosumer"
+      ],
+      "description": "Role of the member in the energy community: producer (generates energy), consumer (uses energy), or prosumer (both produces and consumes)"
+    },
+    "membershipStatus": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "description": "Current membership status indicating whether the member is actively participating in the community"
+    },
+    "joinDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the member joined the energy community, in ISO 8601 format"
+    },
+    "address": {
+      "type": "object",
+      "description": "Postal address of the community member",
+      "properties": {
+        "streetAddress": {
+          "type": "string",
+          "description": "Street name and number"
+        },
+        "addressLocality": {
+          "type": "string",
+          "description": "City or locality"
+        },
+        "addressRegion": {
+          "type": "string",
+          "description": "Region or state"
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "Postal or ZIP code"
+        },
+        "addressCountry": {
+          "type": "string",
+          "description": "Country code (ISO 3166-1 alpha-2)"
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "description": "GeoJSON Point representing the geographic location of the member",
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Point",
+          "description": "GeoJSON geometry type"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 3,
+          "description": "Array of [longitude, latitude] or [longitude, latitude, altitude]"
+        }
+      }
+    },
+    "refCommunity": {
+      "type": "string",
+      "format": "uri",
+      "description": "URN reference to the EnergyCommunity entity this member belongs to (urn:ngsi-ld:EnergyCommunity:<instance-id>)"
+    },
+    "hasDevices": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "Array of URN references to device entities (smart meters, microinverters, batteries) associated with this member"
+    }
+  }
+}

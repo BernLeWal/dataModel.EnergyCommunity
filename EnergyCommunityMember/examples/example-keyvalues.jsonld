@@ -1,0 +1,25 @@
+{
+  "id": "urn:ngsi-ld:EnergyCommunityMember:member-001",
+  "type": "EnergyCommunityMember",
+  "memberName": "Maria Huber",
+  "memberRole": "prosumer",
+  "membershipStatus": "active",
+  "joinDate": "2023-03-15T00:00:00Z",
+  "refCommunity": "urn:ngsi-ld:EnergyCommunity:osih-energy-community-001",
+  "hasDevices": [
+    "urn:ngsi-ld:Device:smart-meter-001",
+    "urn:ngsi-ld:Device:solar-inverter-001"
+  ],
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      11.3928,
+      47.2692
+    ]
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+    "https://smartdatamodels.org/context.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.EnergyCommunity/main/context.jsonld"
+  ]
+}

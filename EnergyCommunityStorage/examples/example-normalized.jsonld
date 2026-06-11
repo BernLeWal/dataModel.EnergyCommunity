@@ -1,0 +1,44 @@
+{
+  "id": "urn:ngsi-ld:EnergyCommunityStorage:storage-001",
+  "type": "EnergyCommunityStorage",
+  "batteryLevel": {
+    "type": "Property",
+    "value": 72
+  },
+  "stateOfCharge": {
+    "type": "Property",
+    "value": 7.2
+  },
+  "activePowerIn": {
+    "type": "Property",
+    "value": 0
+  },
+  "activePowerOut": {
+    "type": "Property",
+    "value": 1500
+  },
+  "batteryCapacity": {
+    "type": "Property",
+    "value": 10.0
+  },
+  "operatingStatus": {
+    "type": "Property",
+    "value": "discharging"
+  },
+  "dateObserved": {
+    "type": "Property",
+    "value": "2024-01-15T10:30:00Z"
+  },
+  "refMember": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:EnergyCommunityMember:member-001"
+  },
+  "refDevice": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:battery-001"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.EnergyCommunity/main/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

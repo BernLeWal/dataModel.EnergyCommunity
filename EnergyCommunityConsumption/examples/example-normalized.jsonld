@@ -1,0 +1,44 @@
+{
+  "id": "urn:ngsi-ld:EnergyCommunityConsumption:consumption-001",
+  "type": "EnergyCommunityConsumption",
+  "activePower": {
+    "type": "Property",
+    "value": 2450
+  },
+  "reactivePower": {
+    "type": "Property",
+    "value": 180
+  },
+  "activeEnergyImport": {
+    "type": "Property",
+    "value": 1523.7
+  },
+  "activeEnergyExport": {
+    "type": "Property",
+    "value": 245.3
+  },
+  "voltage": {
+    "type": "Property",
+    "value": 230.5
+  },
+  "frequency": {
+    "type": "Property",
+    "value": 50.01
+  },
+  "dateObserved": {
+    "type": "Property",
+    "value": "2024-01-15T10:30:00Z"
+  },
+  "refMember": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:EnergyCommunityMember:member-001"
+  },
+  "refDevice": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:smart-meter-001"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.EnergyCommunity/main/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

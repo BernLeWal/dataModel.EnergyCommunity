@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smart-data-models.github.io/dataModel.EnergyCommunity/EnergyCommunity/schema.json",
+  "title": "EnergyCommunity",
+  "description": "An Energy Community entity representing a community-level organization for joint energy generation, sharing, and trading. Based on the Austrian EEG (Erneuerbare-Energie-Gemeinschaft) model.",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "communityName",
+    "communityType"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uri",
+      "description": "Unique identifier of the entity in URN format (urn:ngsi-ld:EnergyCommunity:<instance-id>)",
+      "pattern": "^urn:ngsi-ld:EnergyCommunity:.+"
+    },
+    "type": {
+      "type": "string",
+      "const": "EnergyCommunity",
+      "description": "NGSI-LD entity type. Must be EnergyCommunity."
+    },
+    "communityName": {
+      "type": "string",
+      "description": "Name of the energy community."
+    },
+    "communityType": {
+      "type": "string",
+      "description": "Type of energy community. EEG stands for Erneuerbare-Energie-Gemeinschaft (Renewable Energy Community).",
+      "enum": [
+        "EEG",
+        "BEG",
+        "CEC"
+      ]
+    },
+    "totalMembers": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of members in the energy community."
+    },
+    "totalCapacityKW": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total installed generation capacity of the community in kilowatts (kW)."
+    },
+    "address": {
+      "type": "object",
+      "description": "The postal address of the energy community's registered office.",
+      "properties": {
+        "streetAddress": {
+          "type": "string",
+          "description": "The street address."
+        },
+        "addressLocality": {
+          "type": "string",
+          "description": "The locality (city or town)."
+        },
+        "addressRegion": {
+          "type": "string",
+          "description": "The region (state or province)."
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "The postal code."
+        },
+        "addressCountry": {
+          "type": "string",
+          "description": "The country (ISO 3166-1 alpha-2 code)."
+        }
+      }
+    },
+    "areaServed": {
+      "type": "object",
+      "description": "The geographic area served by the energy community, represented as a GeoJSON geometry.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Point",
+            "Polygon",
+            "MultiPolygon"
+          ],
+          "description": "GeoJSON geometry type."
+        },
+        "coordinates": {
+          "description": "GeoJSON coordinates array."
+        }
+      },
+      "required": [
+        "type",
+        "coordinates"
+      ]
+    },
+    "foundedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the energy community was officially founded (ISO 8601 format)."
+    },
+    "hasMembers": {
+      "type": "array",
+      "description": "Array of URN references to EnergyCommunityMember entities that belong to this community.",
+      "items": {
+        "type": "string",
+        "format": "uri",
+        "pattern": "^urn:ngsi-ld:EnergyCommunityMember:.+"
+      }
+    }
+  }
+}

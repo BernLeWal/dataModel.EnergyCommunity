@@ -1,0 +1,52 @@
+{
+  "id": "urn:ngsi-ld:EnergyCommunity:osih-energy-community-001",
+  "type": "EnergyCommunity",
+  "communityName": "OSIH Energy Community",
+  "communityType": "EEG",
+  "totalMembers": 12,
+  "totalCapacityKW": 45.6,
+  "foundedDate": "2023-03-15T00:00:00Z",
+  "hasMembers": [
+    "urn:ngsi-ld:EnergyCommunityMember:member-001",
+    "urn:ngsi-ld:EnergyCommunityMember:member-002",
+    "urn:ngsi-ld:EnergyCommunityMember:member-003"
+  ],
+  "address": {
+    "streetAddress": "Technikerstraße 13",
+    "addressLocality": "Innsbruck",
+    "addressRegion": "Tirol",
+    "postalCode": "6020",
+    "addressCountry": "AT"
+  },
+  "areaServed": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          11.38,
+          47.26
+        ],
+        [
+          11.42,
+          47.26
+        ],
+        [
+          11.42,
+          47.28
+        ],
+        [
+          11.38,
+          47.28
+        ],
+        [
+          11.38,
+          47.26
+        ]
+      ]
+    ]
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.EnergyCommunity/main/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

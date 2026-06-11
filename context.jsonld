@@ -159,6 +159,21 @@
         "ventilationMode": "https://smartdatamodels.org/dataModel.Energy/ventilationMode",
         "voltage": "https://smartdatamodels.org/dataModel.Energy/voltage",
         "weight": "https://smartdatamodels.org/dataModel.Energy/weight",
-        "width": "https://smartdatamodels.org/dataModel.Energy/width"
+        "width": "https://smartdatamodels.org/dataModel.Energy/width",
+        "memberName": "https://smartdatamodels.org/dataModel.EnergyCommunity/memberName",
+        "memberRole": "https://smartdatamodels.org/dataModel.EnergyCommunity/memberRole",
+        "membershipStatus": "https://smartdatamodels.org/dataModel.EnergyCommunity/membershipStatus",
+        "joinDate": "https://smartdatamodels.org/dataModel.EnergyCommunity/joinDate",
+        "refCommunity": "https://smartdatamodels.org/dataModel.EnergyCommunity/refCommunity",
+        "hasDevices": "https://smartdatamodels.org/dataModel.EnergyCommunity/hasDevices",
+        "communityName": "https://smartdatamodels.org/dataModel.EnergyCommunity/communityName",
+        "communityType": "https://smartdatamodels.org/dataModel.EnergyCommunity/communityType",
+        "totalMembers": "https://smartdatamodels.org/dataModel.EnergyCommunity/totalMembers",
+        "totalCapacityKW": "https://smartdatamodels.org/dataModel.EnergyCommunity/totalCapacityKW",
+        "foundedDate": "https://smartdatamodels.org/dataModel.EnergyCommunity/foundedDate",
+        "hasMembers": "https://smartdatamodels.org/dataModel.EnergyCommunity/hasMembers",
+        "sourceType": "https://smartdatamodels.org/dataModel.EnergyCommunity/sourceType",
+        "operatingStatus": "https://smartdatamodels.org/dataModel.EnergyCommunity/operatingStatus",
+        "refMember": "https://smartdatamodels.org/dataModel.EnergyCommunity/refMember"
     }
 }

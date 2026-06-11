@@ -1,0 +1,85 @@
+{
+  "id": "urn:ngsi-ld:EnergyCommunity:osih-energy-community-001",
+  "type": "EnergyCommunity",
+  "communityName": {
+    "type": "Property",
+    "value": "OSIH Energy Community"
+  },
+  "communityType": {
+    "type": "Property",
+    "value": "EEG"
+  },
+  "totalMembers": {
+    "type": "Property",
+    "value": 12
+  },
+  "totalCapacityKW": {
+    "type": "Property",
+    "value": 45.6
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "Softwarepark 35",
+      "addressLocality": "Hagenberg im Mühlkreis",
+      "addressRegion": "Upper Austria",
+      "postalCode": "4232",
+      "addressCountry": "AT"
+    }
+  },
+  "areaServed": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            14.5128,
+            48.3685
+          ],
+          [
+            14.5195,
+            48.3685
+          ],
+          [
+            14.5195,
+            48.3720
+          ],
+          [
+            14.5128,
+            48.3720
+          ],
+          [
+            14.5128,
+            48.3685
+          ]
+        ]
+      ]
+    }
+  },
+  "foundedDate": {
+    "type": "Property",
+    "value": "2023-03-15T00:00:00Z"
+  },
+  "hasMembers": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:EnergyCommunityMember:member-001",
+      "urn:ngsi-ld:EnergyCommunityMember:member-002",
+      "urn:ngsi-ld:EnergyCommunityMember:member-003",
+      "urn:ngsi-ld:EnergyCommunityMember:member-004",
+      "urn:ngsi-ld:EnergyCommunityMember:member-005",
+      "urn:ngsi-ld:EnergyCommunityMember:member-006",
+      "urn:ngsi-ld:EnergyCommunityMember:member-007",
+      "urn:ngsi-ld:EnergyCommunityMember:member-008",
+      "urn:ngsi-ld:EnergyCommunityMember:member-009",
+      "urn:ngsi-ld:EnergyCommunityMember:member-010",
+      "urn:ngsi-ld:EnergyCommunityMember:member-011",
+      "urn:ngsi-ld:EnergyCommunityMember:member-012"
+    ]
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.EnergyCommunity/main/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

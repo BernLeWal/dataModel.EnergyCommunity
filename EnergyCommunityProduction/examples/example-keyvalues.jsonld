@@ -1,0 +1,17 @@
+{
+  "id": "urn:ngsi-ld:EnergyCommunityProduction:production-001",
+  "type": "EnergyCommunityProduction",
+  "activePower": 3200,
+  "activeEnergyGenerated": 892.4,
+  "sourceType": "solar",
+  "panelEfficiency": 19.5,
+  "irradiance": 850,
+  "dateObserved": "2024-01-15T12:00:00Z",
+  "refDevice": "urn:ngsi-ld:Device:solar-inverter-001",
+  "refMember": "urn:ngsi-ld:EnergyCommunityMember:member-001",
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+    "https://smartdatamodels.org/context.jsonld",
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.EnergyCommunity/main/context.jsonld"
+  ]
+}

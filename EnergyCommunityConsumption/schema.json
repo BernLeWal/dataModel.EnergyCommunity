@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smart-data-models.github.io/dataModel.EnergyCommunity/EnergyCommunityConsumption/schema.json",
+  "title": "EnergyCommunityConsumption",
+  "description": "Energy consumption measurement for a community member, derived from the ACMeasurement Smart Data Model. Captures active/reactive power, energy import/export, voltage, and frequency from smart meters.",
+  "$comment": "Extends concepts from dataModel.Energy/ACMeasurement (https://github.com/smart-data-models/dataModel.Energy/tree/master/ACMeasurement)",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "activePower",
+    "dateObserved",
+    "refMember"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uri",
+      "description": "Unique identifier of the entity in URN format (urn:ngsi-ld:EnergyCommunityConsumption:<instance-id>)",
+      "pattern": "^urn:ngsi-ld:EnergyCommunityConsumption:.+"
+    },
+    "type": {
+      "type": "string",
+      "const": "EnergyCommunityConsumption",
+      "description": "NGSI-LD entity type. Must be EnergyCommunityConsumption."
+    },
+    "activePower": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Current active power consumption measured by the smart meter, in Watts (W). Derived from ACMeasurement."
+    },
+    "reactivePower": {
+      "type": "number",
+      "description": "Reactive power measured by the smart meter, in Volt-Ampere reactive (VAr). Derived from ACMeasurement."
+    },
+    "activeEnergyImport": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Cumulative active energy imported from the grid, in kilowatt-hours (kWh). Derived from ACMeasurement."
+    },
+    "activeEnergyExport": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Cumulative active energy exported to the grid, in kilowatt-hours (kWh). Derived from ACMeasurement."
+    },
+    "voltage": {
+      "type": "number",
+      "description": "Line voltage measured at the smart meter, in Volts (V). Derived from ACMeasurement."
+    },
+    "frequency": {
+      "type": "number",
+      "description": "Grid frequency measured at the smart meter, in Hertz (Hz). Derived from ACMeasurement."
+    },
+    "dateObserved": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the measurement observation in ISO 8601 format."
+    },
+    "address": {
+      "type": "object",
+      "description": "Postal address of the smart meter location.",
+      "properties": {
+        "streetAddress": {
+          "type": "string",
+          "description": "Street address."
+        },
+        "addressLocality": {
+          "type": "string",
+          "description": "City or locality."
+        },
+        "addressRegion": {
+          "type": "string",
+          "description": "Region or state."
+        },
+        "addressCountry": {
+          "type": "string",
+          "description": "Country."
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "Postal code."
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "description": "GeoJSON Point geometry representing the smart meter location.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Point",
+          "description": "GeoJSON geometry type."
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 3,
+          "description": "GeoJSON coordinates [longitude, latitude] or [longitude, latitude, altitude]."
+        }
+      },
+      "required": [
+        "type",
+        "coordinates"
+      ]
+    },
+    "refDevice": {
+      "type": "string",
+      "format": "uri",
+      "description": "URN reference to the smart meter device entity (e.g., urn:ngsi-ld:Device:smartmeter-001).",
+      "pattern": "^urn:ngsi-ld:Device:.+"
+    },
+    "refMember": {
+      "type": "string",
+      "format": "uri",
+      "description": "URN reference to the EnergyCommunityMember entity associated with this consumption measurement.",
+      "pattern": "^urn:ngsi-ld:EnergyCommunityMember:.+"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,60 @@
+{
+  "id": "urn:ngsi-ld:EnergyCommunityProduction:production-001",
+  "type": "EnergyCommunityProduction",
+  "activePower": {
+    "type": "Property",
+    "value": 3200
+  },
+  "activeEnergyGenerated": {
+    "type": "Property",
+    "value": 892.4
+  },
+  "irradiance": {
+    "type": "Property",
+    "value": 850
+  },
+  "panelEfficiency": {
+    "type": "Property",
+    "value": 19.5
+  },
+  "sourceType": {
+    "type": "Property",
+    "value": "solar"
+  },
+  "dateObserved": {
+    "type": "Property",
+    "value": "2024-06-15T12:30:00Z"
+  },
+  "address": {
+    "type": "Property",
+    "value": {
+      "streetAddress": "Innstraße 42",
+      "addressLocality": "Innsbruck",
+      "addressRegion": "Tyrol",
+      "postalCode": "6020",
+      "addressCountry": "AT"
+    }
+  },
+  "location": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        11.3928,
+        47.2620
+      ]
+    }
+  },
+  "refMember": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:EnergyCommunityMember:member-001"
+  },
+  "refDevice": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Device:solar-inverter-001"
+  },
+  "@context": [
+    "https://raw.githubusercontent.com/smart-data-models/dataModel.EnergyCommunity/main/context.jsonld",
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+  ]
+}

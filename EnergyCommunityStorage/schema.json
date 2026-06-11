@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smart-data-models.github.io/dataModel.EnergyCommunity/EnergyCommunityStorage/schema.json",
+  "title": "EnergyCommunityStorage",
+  "description": "Energy storage (battery) measurement for a community member, derived from the StorageBatteryMeasurement Smart Data Model. Captures battery level, state of charge, power in/out, capacity, and operating status.",
+  "$comment": "Extends concepts from dataModel.Battery/StorageBatteryMeasurement (https://github.com/smart-data-models/dataModel.Battery/tree/master/StorageBatteryMeasurement)",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "batteryLevel",
+    "stateOfCharge",
+    "dateObserved",
+    "refMember"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uri",
+      "description": "Unique identifier of the entity in URN format (urn:ngsi-ld:EnergyCommunityStorage:<instance-id>)",
+      "pattern": "^urn:ngsi-ld:EnergyCommunityStorage:.+"
+    },
+    "type": {
+      "type": "string",
+      "const": "EnergyCommunityStorage",
+      "description": "NGSI-LD entity type. Must be EnergyCommunityStorage."
+    },
+    "batteryLevel": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Current battery charge level as a percentage (0-100). Derived from StorageBatteryMeasurement."
+    },
+    "stateOfCharge": {
+      "type": "number",
+      "description": "State of charge of the battery, in ampere-hours (Ah) or kilowatt-hours (kWh). Derived from StorageBatteryMeasurement."
+    },
+    "activePowerIn": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Active power flowing into the battery (charging), in Watts (W). Derived from StorageBatteryMeasurement."
+    },
+    "activePowerOut": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Active power flowing out of the battery (discharging), in Watts (W). Derived from StorageBatteryMeasurement."
+    },
+    "batteryCapacity": {
+      "type": "number",
+      "description": "Total energy capacity of the battery, in kilowatt-hours (kWh). Derived from StorageBatteryMeasurement."
+    },
+    "operatingStatus": {
+      "type": "string",
+      "enum": [
+        "charging",
+        "discharging",
+        "idle"
+      ],
+      "description": "Current operating status of the battery. Community extension indicating the human-readable battery state."
+    },
+    "dateObserved": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the measurement observation in ISO 8601 format."
+    },
+    "address": {
+      "type": "object",
+      "description": "Postal address of the battery storage location.",
+      "properties": {
+        "streetAddress": {
+          "type": "string",
+          "description": "Street address."
+        },
+        "addressLocality": {
+          "type": "string",
+          "description": "City or locality."
+        },
+        "addressRegion": {
+          "type": "string",
+          "description": "Region or state."
+        },
+        "addressCountry": {
+          "type": "string",
+          "description": "Country."
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "Postal code."
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "description": "GeoJSON Point geometry representing the battery storage location.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Point",
+          "description": "GeoJSON geometry type."
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 3,
+          "description": "GeoJSON coordinates [longitude, latitude] or [longitude, latitude, altitude]."
+        }
+      },
+      "required": [
+        "type",
+        "coordinates"
+      ]
+    },
+    "refDevice": {
+      "type": "string",
+      "format": "uri",
+      "description": "URN reference to the battery device entity (e.g., urn:ngsi-ld:Device:battery-001).",
+      "pattern": "^urn:ngsi-ld:Device:.+"
+    },
+    "refMember": {
+      "type": "string",
+      "format": "uri",
+      "description": "URN reference to the EnergyCommunityMember entity associated with this storage measurement.",
+      "pattern": "^urn:ngsi-ld:EnergyCommunityMember:.+"
+    }
+  },
+  "additionalProperties": false
+}
