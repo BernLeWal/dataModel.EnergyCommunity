@@ -1,0 +1,171 @@
+---
+EnergyCommunityStorage:
+  description: 'Energy storage (battery) measurement for a community member, derived from the StorageBatteryMeasurement Smart Data Model. Captures battery level, state of charge, power in/out, capacity, and operating status.'
+  properties:
+    id:
+      anyOf:
+        - description: Identifier format of any NGSI entity
+          maxLength: 256
+          minLength: 1
+          pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$
+          type: string
+          x-ngsi:
+            type: Property
+        - description: Identifier format of any NGSI entity
+          format: uri
+          type: string
+          x-ngsi:
+            type: Property
+      description: Unique identifier of the entity
+      x-ngsi:
+        type: Property
+    type:
+      description: NGSI-LD entity type. Must be EnergyCommunityStorage
+      enum:
+        - EnergyCommunityStorage
+      type: string
+      x-ngsi:
+        type: Property
+    batteryLevel:
+      description: Current battery charge level as a percentage (0-100). Derived from StorageBatteryMeasurement
+      maximum: 100
+      minimum: 0
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: percent
+    stateOfCharge:
+      description: State of charge of the battery, in ampere-hours (Ah) or kilowatt-hours (kWh). Derived from StorageBatteryMeasurement
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: kilowatt hour
+    activePowerIn:
+      description: Active power flowing into the battery (charging), in Watts (W). Derived from StorageBatteryMeasurement
+      minimum: 0
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: Watt
+    activePowerOut:
+      description: Active power flowing out of the battery (discharging), in Watts (W). Derived from StorageBatteryMeasurement
+      minimum: 0
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: Watt
+    batteryCapacity:
+      description: Total energy capacity of the battery, in kilowatt-hours (kWh). Derived from StorageBatteryMeasurement
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: kilowatt hour
+    operatingStatus:
+      description: Current operating status of the battery
+      enum:
+        - charging
+        - discharging
+        - idle
+      type: string
+      x-ngsi:
+        type: Property
+    dateObserved:
+      description: Timestamp of the measurement observation in ISO 8601 format
+      format: date-time
+      type: string
+      x-ngsi:
+        model: https://schema.org/DateTime
+        type: Property
+    address:
+      description: Postal address of the battery storage location
+      properties:
+        streetAddress:
+          description: Street address
+          type: string
+          x-ngsi:
+            model: https://schema.org/streetAddress
+            type: Property
+        addressLocality:
+          description: City or locality
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressLocality
+            type: Property
+        addressRegion:
+          description: Region or state
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressRegion
+            type: Property
+        addressCountry:
+          description: Country
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressCountry
+            type: Property
+        postalCode:
+          description: Postal code
+          type: string
+          x-ngsi:
+            model: https://schema.org/postalCode
+            type: Property
+      type: object
+      x-ngsi:
+        model: https://schema.org/address
+        type: Property
+    location:
+      description: GeoJSON Point geometry representing the battery storage location
+      properties:
+        type:
+          description: GeoJSON geometry type
+          enum:
+            - Point
+          type: string
+          x-ngsi:
+            type: Property
+        coordinates:
+          description: GeoJSON coordinates [longitude, latitude] or [longitude, latitude, altitude]
+          items:
+            type: number
+          minItems: 2
+          maxItems: 3
+          type: array
+          x-ngsi:
+            type: Property
+      required:
+        - type
+        - coordinates
+      type: object
+      x-ngsi:
+        type: GeoProperty
+    refDevice:
+      description: URN reference to the battery device entity
+      format: uri
+      type: string
+      x-ngsi:
+        type: Relationship
+    refMember:
+      description: URN reference to the EnergyCommunityMember entity associated with this storage measurement
+      format: uri
+      type: string
+      x-ngsi:
+        type: Relationship
+  required:
+    - id
+    - type
+    - batteryLevel
+    - stateOfCharge
+    - dateObserved
+    - refMember
+  type: object
+  x-derived-from: https://github.com/smart-data-models/dataModel.Battery/tree/master/StorageBatteryMeasurement
+  x-disclaimer: 'Redistribution and use in source and binary forms, with or without modification, are permitted provided that the license conditions are met. Copyleft (c) 2024 Contributors to Smart Data Models Program'
+  x-license-url: https://github.com/smart-data-models/dataModel.EnergyCommunity/blob/master/EnergyCommunityStorage/LICENSE.md
+  x-model-schema: https://smart-data-models.github.io/dataModel.EnergyCommunity/EnergyCommunityStorage/schema.json
+  x-model-tags: 'Energy, Community, FIWARE'
+  x-version: 0.0.1

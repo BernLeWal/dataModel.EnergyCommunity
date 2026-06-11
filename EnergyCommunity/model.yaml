@@ -1,0 +1,137 @@
+---
+EnergyCommunity:
+  description: An Energy Community entity representing a community-level organization for joint energy generation, sharing, and trading. Based on the Austrian EEG (Erneuerbare-Energie-Gemeinschaft) model.
+  properties:
+    id:
+      anyOf:
+        - description: Identifier format of any NGSI entity
+          maxLength: 256
+          minLength: 1
+          pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$
+          type: string
+          x-ngsi:
+            type: Property
+        - description: Identifier format of any NGSI entity
+          format: uri
+          type: string
+          x-ngsi:
+            type: Property
+      description: Unique identifier of the entity
+      x-ngsi:
+        type: Property
+    type:
+      description: NGSI-LD entity type. Must be EnergyCommunity
+      enum:
+        - EnergyCommunity
+      type: string
+      x-ngsi:
+        type: Property
+    communityName:
+      description: Name of the energy community
+      type: string
+      x-ngsi:
+        type: Property
+    communityType:
+      description: 'Type of energy community. EEG stands for Erneuerbare-Energie-Gemeinschaft (Renewable Energy Community), BEG for Buergerenergiegemeinschaft (Citizens Energy Community), CEC for Citizen Energy Community'
+      enum:
+        - EEG
+        - BEG
+        - CEC
+      type: string
+      x-ngsi:
+        type: Property
+    totalMembers:
+      description: Total number of members in the energy community
+      minimum: 0
+      type: integer
+      x-ngsi:
+        type: Property
+    totalCapacityKW:
+      description: Total installed generation capacity of the community in kilowatts (kW)
+      minimum: 0
+      type: number
+      x-ngsi:
+        type: Property
+        units: kilowatt
+    address:
+      description: The postal address of the energy community's registered office
+      properties:
+        streetAddress:
+          description: The street address
+          type: string
+          x-ngsi:
+            model: https://schema.org/streetAddress
+            type: Property
+        addressLocality:
+          description: The locality (city or town)
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressLocality
+            type: Property
+        addressRegion:
+          description: The region (state or province)
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressRegion
+            type: Property
+        postalCode:
+          description: The postal code
+          type: string
+          x-ngsi:
+            model: https://schema.org/postalCode
+            type: Property
+        addressCountry:
+          description: The country (ISO 3166-1 alpha-2 code)
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressCountry
+            type: Property
+      type: object
+      x-ngsi:
+        model: https://schema.org/address
+        type: Property
+    areaServed:
+      description: The geographic area served by the energy community, represented as a GeoJSON geometry
+      properties:
+        type:
+          description: GeoJSON geometry type
+          enum:
+            - Point
+            - Polygon
+            - MultiPolygon
+          type: string
+          x-ngsi:
+            type: Property
+        coordinates:
+          description: GeoJSON coordinates array
+          x-ngsi:
+            type: Property
+      type: object
+      x-ngsi:
+        type: GeoProperty
+    foundedDate:
+      description: The date and time when the energy community was officially founded (ISO 8601 format)
+      format: date-time
+      type: string
+      x-ngsi:
+        type: Property
+    hasMembers:
+      description: Array of URN references to EnergyCommunityMember entities that belong to this community
+      items:
+        format: uri
+        type: string
+      type: array
+      x-ngsi:
+        type: Relationship
+  required:
+    - id
+    - type
+    - communityName
+    - communityType
+  type: object
+  x-derived-from: ''
+  x-disclaimer: 'Redistribution and use in source and binary forms, with or without modification, are permitted provided that the license conditions are met. Copyleft (c) 2024 Contributors to Smart Data Models Program'
+  x-license-url: https://github.com/smart-data-models/dataModel.EnergyCommunity/blob/master/EnergyCommunity/LICENSE.md
+  x-model-schema: https://smart-data-models.github.io/dataModel.EnergyCommunity/EnergyCommunity/schema.json
+  x-model-tags: 'Energy, Community, FIWARE'
+  x-version: 0.0.1

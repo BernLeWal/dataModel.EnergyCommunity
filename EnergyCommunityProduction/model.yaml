@@ -1,0 +1,160 @@
+---
+EnergyCommunityProduction:
+  description: 'Energy production entity for an Energy Community, extending the SolarEnergy Smart Data Model. Captures real-time and cumulative energy generation from solar panels or wind turbines via microinverters.'
+  properties:
+    id:
+      anyOf:
+        - description: Identifier format of any NGSI entity
+          maxLength: 256
+          minLength: 1
+          pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$
+          type: string
+          x-ngsi:
+            type: Property
+        - description: Identifier format of any NGSI entity
+          format: uri
+          type: string
+          x-ngsi:
+            type: Property
+      description: Unique identifier of the entity
+      x-ngsi:
+        type: Property
+    type:
+      description: NGSI-LD entity type. Must be EnergyCommunityProduction
+      enum:
+        - EnergyCommunityProduction
+      type: string
+      x-ngsi:
+        type: Property
+    activePower:
+      description: Current power output in Watts (W)
+      minimum: 0
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: Watt
+    activeEnergyGenerated:
+      description: Cumulative energy produced in kilowatt-hours (kWh)
+      minimum: 0
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: kilowatt hour
+    sourceType:
+      description: Energy source type
+      enum:
+        - solar
+        - wind
+      type: string
+      x-ngsi:
+        type: Property
+    panelEfficiency:
+      description: Current panel efficiency in percent (%)
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: percent
+    irradiance:
+      description: Solar irradiance on panel surface in Watts per square meter (W/m²)
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: watt per square metre
+    dateObserved:
+      description: Observation timestamp in ISO 8601 format
+      format: date-time
+      type: string
+      x-ngsi:
+        model: https://schema.org/DateTime
+        type: Property
+    address:
+      description: Postal address of the production installation
+      properties:
+        streetAddress:
+          description: Street address
+          type: string
+          x-ngsi:
+            model: https://schema.org/streetAddress
+            type: Property
+        addressLocality:
+          description: City or locality
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressLocality
+            type: Property
+        addressRegion:
+          description: Region or state
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressRegion
+            type: Property
+        postalCode:
+          description: Postal code
+          type: string
+          x-ngsi:
+            model: https://schema.org/postalCode
+            type: Property
+        addressCountry:
+          description: Country code (ISO 3166-1 alpha-2)
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressCountry
+            type: Property
+      type: object
+      x-ngsi:
+        model: https://schema.org/address
+        type: Property
+    location:
+      description: GeoJSON Point representing the geographic location of the production installation
+      properties:
+        type:
+          description: GeoJSON geometry type
+          enum:
+            - Point
+          type: string
+          x-ngsi:
+            type: Property
+        coordinates:
+          description: Array of [longitude, latitude] or [longitude, latitude, altitude]
+          items:
+            type: number
+          minItems: 2
+          maxItems: 3
+          type: array
+          x-ngsi:
+            type: Property
+      required:
+        - type
+        - coordinates
+      type: object
+      x-ngsi:
+        type: GeoProperty
+    refDevice:
+      description: URN reference to the microinverter device entity
+      format: uri
+      type: string
+      x-ngsi:
+        type: Relationship
+    refMember:
+      description: URN reference to the EnergyCommunityMember entity that owns this production installation
+      format: uri
+      type: string
+      x-ngsi:
+        type: Relationship
+  required:
+    - id
+    - type
+    - activePower
+    - dateObserved
+    - refMember
+  type: object
+  x-derived-from: https://github.com/smart-data-models/dataModel.Energy/tree/master/SolarEnergy
+  x-disclaimer: 'Redistribution and use in source and binary forms, with or without modification, are permitted provided that the license conditions are met. Copyleft (c) 2024 Contributors to Smart Data Models Program'
+  x-license-url: https://github.com/smart-data-models/dataModel.EnergyCommunity/blob/master/EnergyCommunityProduction/LICENSE.md
+  x-model-schema: https://smart-data-models.github.io/dataModel.EnergyCommunity/EnergyCommunityProduction/schema.json
+  x-model-tags: 'Energy, Community, FIWARE'
+  x-version: 0.0.1

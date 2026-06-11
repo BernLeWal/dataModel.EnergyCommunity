@@ -1,0 +1,145 @@
+---
+EnergyCommunityMember:
+  description: A participant in an energy community with their role and associated devices.
+  properties:
+    id:
+      anyOf:
+        - description: Identifier format of any NGSI entity
+          maxLength: 256
+          minLength: 1
+          pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$
+          type: string
+          x-ngsi:
+            type: Property
+        - description: Identifier format of any NGSI entity
+          format: uri
+          type: string
+          x-ngsi:
+            type: Property
+      description: Unique identifier of the entity
+      x-ngsi:
+        type: Property
+    type:
+      description: NGSI-LD entity type. Must be EnergyCommunityMember
+      enum:
+        - EnergyCommunityMember
+      type: string
+      x-ngsi:
+        type: Property
+    memberName:
+      description: Name of the community member
+      type: string
+      x-ngsi:
+        type: Property
+    memberRole:
+      description: 'Role of the member in the energy community: producer (generates energy), consumer (uses energy), or prosumer (both produces and consumes)'
+      enum:
+        - producer
+        - consumer
+        - prosumer
+      type: string
+      x-ngsi:
+        type: Property
+    membershipStatus:
+      description: Current membership status indicating whether the member is actively participating in the community
+      enum:
+        - active
+        - inactive
+      type: string
+      x-ngsi:
+        type: Property
+    joinDate:
+      description: Date and time when the member joined the energy community, in ISO 8601 format
+      format: date-time
+      type: string
+      x-ngsi:
+        type: Property
+    address:
+      description: Postal address of the community member
+      properties:
+        streetAddress:
+          description: Street name and number
+          type: string
+          x-ngsi:
+            model: https://schema.org/streetAddress
+            type: Property
+        addressLocality:
+          description: City or locality
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressLocality
+            type: Property
+        addressRegion:
+          description: Region or state
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressRegion
+            type: Property
+        postalCode:
+          description: Postal or ZIP code
+          type: string
+          x-ngsi:
+            model: https://schema.org/postalCode
+            type: Property
+        addressCountry:
+          description: Country code (ISO 3166-1 alpha-2)
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressCountry
+            type: Property
+      type: object
+      x-ngsi:
+        model: https://schema.org/address
+        type: Property
+    location:
+      description: GeoJSON Point representing the geographic location of the member
+      properties:
+        type:
+          description: GeoJSON geometry type
+          enum:
+            - Point
+          type: string
+          x-ngsi:
+            type: Property
+        coordinates:
+          description: Array of [longitude, latitude] or [longitude, latitude, altitude]
+          items:
+            type: number
+          minItems: 2
+          maxItems: 3
+          type: array
+          x-ngsi:
+            type: Property
+      required:
+        - type
+        - coordinates
+      type: object
+      x-ngsi:
+        type: GeoProperty
+    refCommunity:
+      description: URN reference to the EnergyCommunity entity this member belongs to
+      format: uri
+      type: string
+      x-ngsi:
+        type: Relationship
+    hasDevices:
+      description: Array of URN references to device entities (smart meters, microinverters, batteries) associated with this member
+      items:
+        format: uri
+        type: string
+      type: array
+      x-ngsi:
+        type: Relationship
+  required:
+    - id
+    - type
+    - memberName
+    - memberRole
+    - refCommunity
+  type: object
+  x-derived-from: ''
+  x-disclaimer: 'Redistribution and use in source and binary forms, with or without modification, are permitted provided that the license conditions are met. Copyleft (c) 2024 Contributors to Smart Data Models Program'
+  x-license-url: https://github.com/smart-data-models/dataModel.EnergyCommunity/blob/master/EnergyCommunityMember/LICENSE.md
+  x-model-schema: https://smart-data-models.github.io/dataModel.EnergyCommunity/EnergyCommunityMember/schema.json
+  x-model-tags: 'Energy, Community, FIWARE'
+  x-version: 0.0.1

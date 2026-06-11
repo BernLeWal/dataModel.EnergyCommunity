@@ -1,0 +1,167 @@
+---
+EnergyCommunityConsumption:
+  description: 'Energy consumption measurement for a community member, derived from the ACMeasurement Smart Data Model. Captures active/reactive power, energy import/export, voltage, and frequency from smart meters.'
+  properties:
+    id:
+      anyOf:
+        - description: Identifier format of any NGSI entity
+          maxLength: 256
+          minLength: 1
+          pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$
+          type: string
+          x-ngsi:
+            type: Property
+        - description: Identifier format of any NGSI entity
+          format: uri
+          type: string
+          x-ngsi:
+            type: Property
+      description: Unique identifier of the entity
+      x-ngsi:
+        type: Property
+    type:
+      description: NGSI-LD entity type. Must be EnergyCommunityConsumption
+      enum:
+        - EnergyCommunityConsumption
+      type: string
+      x-ngsi:
+        type: Property
+    activePower:
+      description: Current active power consumption measured by the smart meter, in Watts (W). Derived from ACMeasurement
+      minimum: 0
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: Watt
+    reactivePower:
+      description: Reactive power measured by the smart meter, in Volt-Ampere reactive (VAr). Derived from ACMeasurement
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: volt-ampere reactive
+    activeEnergyImport:
+      description: Cumulative active energy imported from the grid, in kilowatt-hours (kWh). Derived from ACMeasurement
+      minimum: 0
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: kilowatt hour
+    activeEnergyExport:
+      description: Cumulative active energy exported to the grid, in kilowatt-hours (kWh). Derived from ACMeasurement
+      minimum: 0
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: kilowatt hour
+    voltage:
+      description: Line voltage measured at the smart meter, in Volts (V). Derived from ACMeasurement
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: Volt
+    frequency:
+      description: Grid frequency measured at the smart meter, in Hertz (Hz). Derived from ACMeasurement
+      type: number
+      x-ngsi:
+        model: https://schema.org/Number
+        type: Property
+        units: Hertz
+    dateObserved:
+      description: Timestamp of the measurement observation in ISO 8601 format
+      format: date-time
+      type: string
+      x-ngsi:
+        model: https://schema.org/DateTime
+        type: Property
+    address:
+      description: Postal address of the smart meter location
+      properties:
+        streetAddress:
+          description: Street address
+          type: string
+          x-ngsi:
+            model: https://schema.org/streetAddress
+            type: Property
+        addressLocality:
+          description: City or locality
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressLocality
+            type: Property
+        addressRegion:
+          description: Region or state
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressRegion
+            type: Property
+        addressCountry:
+          description: Country
+          type: string
+          x-ngsi:
+            model: https://schema.org/addressCountry
+            type: Property
+        postalCode:
+          description: Postal code
+          type: string
+          x-ngsi:
+            model: https://schema.org/postalCode
+            type: Property
+      type: object
+      x-ngsi:
+        model: https://schema.org/address
+        type: Property
+    location:
+      description: GeoJSON Point geometry representing the smart meter location
+      properties:
+        type:
+          description: GeoJSON geometry type
+          enum:
+            - Point
+          type: string
+          x-ngsi:
+            type: Property
+        coordinates:
+          description: GeoJSON coordinates [longitude, latitude] or [longitude, latitude, altitude]
+          items:
+            type: number
+          minItems: 2
+          maxItems: 3
+          type: array
+          x-ngsi:
+            type: Property
+      required:
+        - type
+        - coordinates
+      type: object
+      x-ngsi:
+        type: GeoProperty
+    refDevice:
+      description: URN reference to the smart meter device entity
+      format: uri
+      type: string
+      x-ngsi:
+        type: Relationship
+    refMember:
+      description: URN reference to the EnergyCommunityMember entity associated with this consumption measurement
+      format: uri
+      type: string
+      x-ngsi:
+        type: Relationship
+  required:
+    - id
+    - type
+    - activePower
+    - dateObserved
+    - refMember
+  type: object
+  x-derived-from: https://github.com/smart-data-models/dataModel.Energy/tree/master/ACMeasurement
+  x-disclaimer: 'Redistribution and use in source and binary forms, with or without modification, are permitted provided that the license conditions are met. Copyleft (c) 2024 Contributors to Smart Data Models Program'
+  x-license-url: https://github.com/smart-data-models/dataModel.EnergyCommunity/blob/master/EnergyCommunityConsumption/LICENSE.md
+  x-model-schema: https://smart-data-models.github.io/dataModel.EnergyCommunity/EnergyCommunityConsumption/schema.json
+  x-model-tags: 'Energy, Community, FIWARE'
+  x-version: 0.0.1
